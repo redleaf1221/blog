@@ -590,14 +590,22 @@ body.no-tabs { --tabbar-h: 0px; }
 
 /* ---------- 10. welcome -------------------------------------------------- */
 
+/* The home page is two "pages": the welcome fills the first screen exactly, and
+   the timeline slides up over it instead of peeking in half-cut. While the
+   timeline scrolls, the welcome stays pinned behind it, so the transition reads
+   as one screen replacing another rather than a long scroll. */
 .welcome {
-  min-height: calc(100vh - var(--topbar-h) - var(--tabbar-h) - 36px);
+  position: sticky;
+  top: calc(var(--topbar-h) + var(--tabbar-h) + 26px);
+  height: calc(100vh - var(--topbar-h) - var(--tabbar-h) - 26px);
+  height: calc(100dvh - var(--topbar-h) - var(--tabbar-h) - 26px);
+  min-height: 0;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: 44px;
   align-items: center;
-  padding: 10px 0 54px;
-  position: relative;
+  padding: 10px 0 0;
+  z-index: 0;
 }
 
 .welcome-kicker {
@@ -718,6 +726,16 @@ body.no-tabs { --tabbar-h: 0px; }
 @keyframes bob { 50% { transform: translateY(4px); } }
 
 /* ---------- 11. timeline ------------------------------------------------- */
+
+/* page 2: opaque, so it visibly slides over the pinned first screen */
+.timeline {
+  position: relative;
+  z-index: 1;
+  padding-top: 20px;
+  background: var(--bg);
+  /* jumping here from the "scroll down" link must clear the sticky bars */
+  scroll-margin-top: calc(var(--topbar-h) + var(--tabbar-h) + 6px);
+}
 
 .timeline-head {
   display: flex;
@@ -1463,7 +1481,13 @@ pre:hover .code-copy { opacity: 1; }
   .sidebar-backdrop.is-open { opacity: 1; pointer-events: auto; }
   .welcome { grid-template-columns: minmax(0, 1fr); }
   .welcome-term { display: none; }
-  .welcome { min-height: calc(100vh - var(--topbar-h) - var(--tabbar-h) - 60px); }
+  /* too narrow to pin the first screen: keep it filling the viewport instead */
+  .welcome {
+    position: static;
+    height: auto;
+    min-height: calc(100dvh - var(--topbar-h) - var(--tabbar-h) - 26px);
+    padding-bottom: 54px;
+  }
   .article-grid.has-toc { grid-template-columns: minmax(0, 1fr); }
   .toc-rail { position: static; max-height: none; order: -1; }
   .toc-rail .toc-card { background: var(--panel); }
