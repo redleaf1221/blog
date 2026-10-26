@@ -1,0 +1,84 @@
+name: English
+
+menu:
+  articles: Articles
+  tags: Tags
+  friends: Friends
+  about: About
+  archives: Archive
+
+home:
+  scroll: Scroll down
+  latest: Recent posts
+  posts_total: "%s posts"
+  empty: No posts yet.
+  folders: folders
+
+sidebar:
+  all: All posts
+  tags: Browse by tags
+  search: Search posts…
+  empty: Nothing matches
+
+tab:
+  close: Close
+  home: Home
+
+stats:
+  posts: posts
+  folders: folders
+  tags: tags
+
+articles:
+  title: Articles
+  all_posts: All posts
+  empty: This folder has no posts yet.
+
+timeline:
+  year_total: "%s posts"
+
+post:
+  untitled: Untitled
+  no_content: This post has no content yet.
+  posted: Posted on
+  updated: Updated on
+  folder: Folder
+  tags: Tags
+  toc: Contents
+  reading_time: "%s min read"
+  prev: Previous
+  next: Next
+  back: Back to
+  root_folder: Articles
+
+tag:
+  title: Tags
+  heading: Tag
+  count: posts
+  none: No tags yet.
+
+folder:
+  subfolders: Sub-folders
+  subfolders_count: sub-folders
+  posts: Posts
+  count: posts
+
+archive:
+  title: Archive
+
+friends:
+  title: Friends
+  empty: No links yet.
+
+pagination:
+  prev: Newer
+  next: Older
+  status: Page %s / %s
+
+footer:
+  powered: Powered by %s
+
+reading:
+  minutes: "%s min read"
+  hours: "%s hr read"
+  hours_minutes: "%s hr %s min read"

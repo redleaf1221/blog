@@ -1,0 +1,59 @@
+# ============================================================
+# term 主题配置（站点级）
+# 这里的值会覆盖 themes/term/_config.yml 中的默认值。
+# 想改主题相关设置，只改这个文件即可；主题更新不会覆盖它。
+# 完整可用键见 themes/term/_config.yml。
+# ============================================================
+
+# 顶栏站名；留空则使用 _config.yml 的 title
+brand_name: ""
+
+# 顶栏头像 URL；留空则用作者名首字母
+avatar: "/icon.jpg"
+
+# 顶栏视图：文章 / 友链 / 关于（标签在侧栏，不在这里）
+menu:
+  articles: /articles/
+  friends: /friends/
+  about: /about/
+
+# 首页正文：改 source/_welcome.md，或在这里换一个文件
+welcome_file: _welcome.md
+
+# “文章”页横幅副标题；留空则不显示
+articles_intro: ""
+
+# 侧栏文件夹树
+folder_tree: true
+
+# 文章右侧目录
+toc:
+  min_depth: auto   # auto = 从正文实际使用的最浅标题开始
+  levels: 2
+
+# 列表摘要长度
+summary_length: 160
+
+# 强调色
+accent: "#5ad1c8"
+
+# 阅读时长
+reading_time: true
+reading_speed: 500   # 正文字符/分钟
+code_speed: 300      # 代码行/分钟（0 = 代码不计入）
+
+# 代码块复制按钮
+code_copy: true
+
+social:
+  github: ""
+
+footer:
+  since: 2026
+  powered: true
+  icp: ""
+
+# 页脚链接（数组会与主题默认值按索引合并，主题默认为空）
+footer_links:
+  - name: 归档
+    url: /archives/

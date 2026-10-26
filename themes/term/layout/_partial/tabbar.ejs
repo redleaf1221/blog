@@ -1,0 +1,14 @@
+<% var isPost = page.layout === 'post'; %>
+<div class="tabbar<%= isPost ? '' : ' is-empty' %>" data-tabbar>
+  <div class="tabbar-track" data-tabs>
+    <% if (isPost) { %>
+    <div class="tab is-active" data-tab data-tab-path="<%- url_for(page.path) %>">
+      <a class="tab-link" href="<%- url_for(page.path) %>" data-tab-link>
+        <span class="tab-dot" aria-hidden="true"></span>
+        <span class="tab-title"><%= tab_title() %></span>
+      </a>
+      <button class="tab-close" type="button" data-tab-close aria-label="<%= __('tab.close') %>">×</button>
+    </div>
+    <% } %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<section class="banner">
+  <% if (crumbs && crumbs.length) { %>
+  <nav class="banner-crumbs">
+    <a href="<%- url_for('/articles/') %>"><%= __('post.root_folder') %></a>
+    <% crumbs.forEach(function (c, i) { %>
+    <span class="crumb-sep">/</span>
+    <span class="crumb-current"><%= c.name %></span>
+    <% }); %>
+  </nav>
+  <% } %>
+
+  <div class="banner-row">
+    <div class="banner-copy">
+      <% if (kicker) { %><p class="banner-kicker"><span class="dot"></span><%= kicker %></p><% } %>
+      <h1 class="banner-title"><%= title %></h1>
+      <% if (desc) { %><p class="banner-desc"><%= desc %></p><% } %>
+    </div>
+    <% if (count !== '' && count !== null && typeof count !== 'undefined') { %>
+    <div class="banner-side">
+      <span class="banner-count"><%= count %></span>
+      <span class="banner-label"><%= countLabel %></span>
+    </div>
+    <% } %>
+  </div>
+</section>

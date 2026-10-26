@@ -1,0 +1,35 @@
+<ul class="tree<%= depth === 0 ? ' tree-root' : '' %>">
+  <% (nodes || []).forEach(function (node) {
+       var kids = node.children || [];
+       var nodePosts = node.posts || [];
+       var expandable = kids.length > 0 || nodePosts.length > 0;
+  %>
+  <li class="tree-node is-collapsed" data-tree-key="<%= node.key || node.name %>">
+    <% if (expandable) { %>
+    <button class="tree-row tree-folder" type="button" data-tree-toggle aria-expanded="false">
+      <%- partial('_partial/icon', { name: 'folder' }) %>
+      <span class="tree-name"><%= node.name %></span>
+      <span class="tree-count"><%= node.total %></span>
+      <span class="tree-caret" aria-hidden="true"><%- partial('_partial/icon', { name: 'chevron' }) %></span>
+    </button>
+
+    <div class="tree-children" data-tree-children>
+      <% if (kids.length) { %>
+      <%- partial('_partial/tree', { nodes: kids, depth: depth + 1 }) %>
+      <% } %>
+      <% nodePosts.forEach(function (post) { %>
+      <%- partial('_partial/tree-post', { post: post, atRoot: false }) %>
+      <% }); %>
+    </div>
+    <% } else { %>
+    <div class="tree-row is-leaf">
+      <span class="tree-bullet" aria-hidden="true"></span>
+      <span class="tree-name"><%= node.name %></span>
+    </div>
+    <% } %>
+  </li>
+  <% }); %>
+  <% if (depth === 0) { %><% (posts || []).forEach(function (post) { %>
+  <li class="tree-leaf"><%- partial('_partial/tree-post', { post: post, atRoot: true }) %></li>
+  <% }); %><% } %>
+</ul>

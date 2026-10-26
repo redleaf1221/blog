@@ -1,0 +1,56 @@
+# ============================================================
+# term — 默认配置（主题自带，请不要直接改这个文件）
+#
+# 站点自己的设置写在**站点根目录**的 `_config.term.yml`，
+# Hexo 会把它深度合并到这里的默认值之上。
+# 主题升级时只需保留 `_config.term.yml`。
+# ============================================================
+
+# 顶栏头像与站名（brand_name 留空则使用站点标题）
+avatar: ""
+brand_name: ""
+
+# 顶栏视图。顺序即显示顺序，键名对应 languages/*.yml 的 menu.*
+menu:
+  articles: /articles/
+  friends: /friends/
+  about: /about/
+
+# 首页正文（相对 source/ 的 markdown）；留空则不显示正文
+welcome_file: _welcome.md
+
+# “文章”页横幅的副标题，留空则不显示
+articles_intro: ""
+
+# 侧栏是否显示文件夹树
+folder_tree: true
+
+# 文章右侧目录
+toc:
+  min_depth: auto   # auto = 从正文实际使用的最浅标题开始
+  levels: 2         # 从 min_depth 起包含几级
+
+# 列表卡片摘要长度（没有 <!-- more --> 时截断的字符数）
+summary_length: 160
+
+# 强调色（任意 CSS 颜色）
+accent: "#5ad1c8"
+
+# 阅读时长估算
+reading_time: true
+reading_speed: 500   # 正文字符/分钟
+code_speed: 300      # 代码行/分钟（0 = 代码不计入）
+
+# 代码块复制按钮
+code_copy: true
+
+social:
+  github: ""
+
+footer:
+  since: ""          # 留空则用当前年份
+  powered: true
+  icp: ""
+
+# 页脚链接（默认留空，由站点配置决定）
+footer_links: []

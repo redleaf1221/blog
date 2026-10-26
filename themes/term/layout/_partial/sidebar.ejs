@@ -1,0 +1,29 @@
+<% var stats = blog_stats(); %>
+<aside class="sidebar" data-sidebar aria-label="<%= __('sidebar.all') %>">
+  <a class="sidebar-head" href="<%- url_for('/articles/') %>" data-path="/articles/">
+    <%- partial('_partial/icon', { name: 'grid' }) %>
+    <span class="sidebar-title"><%= __('sidebar.all') %></span>
+    <span class="sidebar-total"><%= folderTree.total %></span>
+  </a>
+
+  <a class="sidebar-head sidebar-alt" href="<%- url_for('/tags/') %>" data-path="/tags/">
+    <%- partial('_partial/icon', { name: 'tags' }) %>
+    <span class="sidebar-title"><%= __('sidebar.tags') %></span>
+    <span class="sidebar-total"><%= stats.tags %></span>
+  </a>
+
+  <label class="sidebar-search">
+    <%- partial('_partial/icon', { name: 'search' }) %>
+    <input type="search" placeholder="<%= __('sidebar.search') %>" data-search autocomplete="off" spellcheck="false">
+  </label>
+
+  <% if (theme.folder_tree !== false) { %>
+  <nav class="sidebar-nav" data-sidebar-nav>
+    <%- partial('_partial/tree', { nodes: folderTree.children, posts: folderTree.posts, depth: 0 }) %>
+  </nav>
+  <% } %>
+
+  <div class="sidebar-foot">
+    <a class="sidebar-foot-link" href="<%- url_for('/archives/') %>"><%= __('menu.archives') %></a>
+  </div>
+</aside>

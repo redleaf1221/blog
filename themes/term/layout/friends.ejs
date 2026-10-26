@@ -1,0 +1,36 @@
+<% var links = page.friends || []; %>
+<%- partial('_partial/banner', {
+      kicker: '',
+      title: page.title || __('friends.title'),
+      desc: page.description || '',
+      count: links.length,
+      countLabel: __('friends.title'),
+      crumbs: null
+    }) %>
+
+<% if (!links.length) { %>
+<p class="empty-note"><%= __('friends.empty') %></p>
+<% } else { %>
+<div class="friend-grid">
+  <% links.forEach(function (link) { %>
+  <a class="friend-card" href="<%= link.url %>" target="_blank" rel="noopener noreferrer">
+    <% if (link.avatar) { %>
+    <img class="friend-avatar" src="<%= link.avatar %>" alt="" loading="lazy" width="44" height="44">
+    <% } else { %>
+    <span class="friend-avatar is-letter" aria-hidden="true"><%= String(link.name || '?').slice(0, 1) %></span>
+    <% } %>
+    <span class="friend-text">
+      <span class="friend-name"><%= link.name %></span>
+      <% if (link.desc) { %><span class="friend-desc"><%= link.desc %></span><% } %>
+      <span class="friend-url"><%= String(link.url || '').replace(/^https?:\/\//, '') %></span>
+    </span>
+  </a>
+  <% }); %>
+</div>
+<% } %>
+
+<% if (page.content && page.content.trim()) { %>
+<div class="post-body page-body friend-note">
+  <%- page.content %>
+</div>
+<% } %>

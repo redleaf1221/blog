@@ -1,0 +1,23 @@
+<% var allTags = site.tags.sort('name'); %>
+<%- partial('_partial/banner', {
+      kicker: '',
+      title: __('tag.title'),
+      desc: page.description || '',
+      count: allTags.length,
+      countLabel: __('stats.tags'),
+      crumbs: null
+    }) %>
+
+<% if (!allTags.length) { %>
+<p class="empty-note"><%= __('tag.none') %></p>
+<% } else { %>
+<ul class="tag-cloud">
+  <% allTags.forEach(function (tag) { %>
+  <li>
+    <a class="tag-pill" href="<%- url_for(tag.path) %>">
+      <span class="tag-hash">#</span><span class="tag-name"><%= tag.name %></span><span class="tag-count"><%= tag.length %></span>
+    </a>
+  </li>
+  <% }); %>
+</ul>
+<% } %>

@@ -1,0 +1,15 @@
+<% if (typeof page.total !== 'undefined' && page.total > 1) { %>
+<nav class="pager" aria-label="Pagination">
+  <% if (page.prev_link) { %>
+  <a class="pager-link" href="<%- url_for(page.prev_link) %>" rel="prev">← <%= __('pagination.prev') %></a>
+  <% } else { %>
+  <span class="pager-link is-disabled">← <%= __('pagination.prev') %></span>
+  <% } %>
+  <span class="pager-status"><%= __('pagination.status', page.current, page.total) %></span>
+  <% if (page.next_link) { %>
+  <a class="pager-link" href="<%- url_for(page.next_link) %>" rel="next"><%= __('pagination.next') %> →</a>
+  <% } else { %>
+  <span class="pager-link is-disabled"><%= __('pagination.next') %> →</span>
+  <% } %>
+</nav>
+<% } %>

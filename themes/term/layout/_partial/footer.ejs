@@ -1,0 +1,22 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <% var nowYear = date(new Date(), 'YYYY'); var since = (theme.footer && theme.footer.since) || nowYear; %>
+    <div class="footer-left">
+      <span class="footer-copy">© <%= String(since) === String(nowYear) ? nowYear : since + '–' + nowYear %> <%= config.author || config.title %></span>
+      <% if (theme.footer && theme.footer.powered) { %>
+      <span class="footer-dot">·</span>
+      <span class="footer-powered"><%= __('footer.powered', 'Hexo + term') %></span>
+      <% } %>
+      <% if (theme.footer && theme.footer.icp) { %>
+      <span class="footer-dot">·</span>
+      <a class="footer-link" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer"><%= theme.footer.icp %></a>
+      <% } %>
+    </div>
+    <div class="footer-right">
+      <% (theme.footer_links || []).forEach(function (link) { %>
+      <a class="footer-link" href="<%- url_for(link.url) %>"><%= link.name %></a>
+      <% }); %>
+      <button class="footer-top" type="button" data-to-top aria-label="Back to top">↑</button>
+    </div>
+  </div>
+</footer>

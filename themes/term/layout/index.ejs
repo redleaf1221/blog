@@ -1,0 +1,47 @@
+<% var welcomeHtml = welcome_content(); %>
+<section class="welcome">
+  <div class="welcome-copy">
+    <% if (welcomeHtml) { %>
+    <div class="welcome-prose"><%- welcomeHtml %></div>
+    <% } else if (config.description) { %>
+    <h1 class="welcome-title"><%= config.title %></h1>
+    <p class="welcome-desc"><%= config.description %></p>
+    <% } else { %>
+    <h1 class="welcome-title"><%= config.title %></h1>
+    <% } %>
+  </div>
+
+  <div class="term-window" data-shell data-author="<%= config.author || '' %>">
+    <div class="term-bar">
+      <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+      <span class="term-title">zsh — ~/blog</span>
+      <span class="term-hint">type <b>help</b></span>
+    </div>
+    <div class="term-screen" data-shell-screen>
+      <div class="term-output" data-shell-output></div>
+      <form class="term-line" data-shell-form>
+        <span class="term-ps1">❯</span>
+        <span class="term-cwd" data-shell-cwd>~</span>
+        <input class="term-input" data-shell-input type="text" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="terminal input">
+      </form>
+    </div>
+  </div>
+
+  <a class="welcome-scroll" href="#timeline">
+    <span><%= __('home.scroll') %></span>
+    <span class="scroll-arrow" aria-hidden="true">↓</span>
+  </a>
+</section>
+
+<script type="application/json" id="term-data"><%- term_data() %></script>
+
+<section class="timeline" id="timeline">
+  <header class="timeline-head">
+    <h2 class="timeline-title"><%= __('home.latest') %></h2>
+    <span class="timeline-total"><%= __('home.posts_total', blog_stats().posts) %></span>
+  </header>
+
+  <%- partial('_partial/timeline', { posts: page.posts }) %>
+  <p class="empty-note is-hidden" data-search-empty><%= __('sidebar.empty') %></p>
+  <%- partial('_partial/pager') %>
+</section>

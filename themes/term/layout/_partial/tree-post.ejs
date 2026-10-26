@@ -1,0 +1,5 @@
+<a class="tree-post<%= atRoot ? ' is-root' : '' %>" href="<%- url_for(post.path) %>" data-post-path="<%- url_for(post.path) %>" title="<%= post.title %>">
+  <%- partial('_partial/icon', { name: 'file' }) %>
+  <span class="tree-post-title"><%= post.title || __('post.untitled') %></span>
+  <time class="tree-post-date" datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
+</a>

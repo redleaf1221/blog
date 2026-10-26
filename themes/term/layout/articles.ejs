@@ -1,0 +1,14 @@
+<%- partial('_partial/banner', {
+      kicker: '',
+      title: __('articles.title'),
+      desc: page.description || theme.articles_intro || '',
+      count: blog_stats().posts,
+      countLabel: __('stats.posts'),
+      crumbs: null
+    }) %>
+
+<section class="block">
+  <h2 class="block-title"><%= __('articles.all_posts') %></h2>
+  <%- partial('_partial/timeline', { posts: page.posts }) %>
+  <p class="empty-note is-hidden" data-search-empty><%= __('sidebar.empty') %></p>
+</section>

@@ -1,0 +1,57 @@
+<%
+  var list = posts || [];
+  var groups = [];
+  var current = null;
+  list.forEach(function (post) {
+    var year = date(post.date, 'YYYY');
+    if (!current || current.year !== year) {
+      current = { year: year, posts: [] };
+      groups.push(current);
+    }
+    current.posts.push(post);
+  });
+%>
+<% if (!list.length) { %>
+<p class="empty-note"><%= (typeof emptyText !== 'undefined' && emptyText) ? emptyText : __('home.empty') %></p>
+<% } else { %>
+<% groups.forEach(function (group) { %>
+<section class="year-block">
+  <h2 class="year-head">
+    <span class="year-label"><%= group.year %></span>
+    <span class="year-count"><%= __('timeline.year_total', group.posts.length) %></span>
+  </h2>
+
+  <ol class="post-list">
+    <% group.posts.forEach(function (post) {
+         var folder = folder_of(post);
+         var summary = post_summary(post);
+         var readLabel = reading_label(post);
+         var postTags = (post.tags && post.tags.length) ? post.tags.toArray() : [];
+         var search = [post.title || '', post.slug || '', folder && (folder.pathLabel || folder.name) || '', postTags.map(function (t) { return t.name; }).join(' ')].join(' ').toLowerCase();
+    %>
+    <li class="post-card" data-search="<%= search %>">
+      <div class="post-card-date">
+        <time datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'MM-DD') %></time>
+      </div>
+      <article class="post-card-main">
+        <h3 class="post-card-title">
+          <a href="<%- url_for(post.path) %>"><%= post.title || __('post.untitled') %></a>
+        </h3>
+        <div class="post-card-excerpt">
+          <% if (summary.html) { %><%- summary.text %><% } else if (summary.text) { %><p><%= summary.text %></p><% } else { %><p class="dim"><%= __('post.no_content') %></p><% } %>
+        </div>
+        <div class="post-card-meta">
+          <% if (folder && folder.name) { %>
+          <span class="chip chip-folder"><span class="chip-mark" aria-hidden="true"></span><%= folder.pathLabel || folder.name %></span>
+          <% } %>
+          <% if (readLabel) { %>
+          <span class="post-card-read"><%- partial('_partial/icon', { name: 'clock' }) %><%= readLabel %></span>
+          <% } %>
+        </div>
+      </article>
+    </li>
+    <% }); %>
+  </ol>
+</section>
+<% }); %>
+<% } %>

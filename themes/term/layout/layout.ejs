@@ -1,0 +1,30 @@
+<%
+  var kind = page_kind(page);
+%>
+<!DOCTYPE html>
+<html lang="<%= page.lang || config.language || 'zh-CN' %>" data-theme="dark">
+<head>
+<%- partial('_partial/head') %>
+</head>
+<body class="t-<%= page.pageType || page.layout || 'page' %><%= kind === 'post' ? '' : ' no-tabs' %><%= kind === 'plain' ? ' is-plain' : '' %>" data-home-title="<%= __('tab.home') %>" data-close-label="<%= __('tab.close') %>" data-page-kind="<%= kind %>">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="app-shell">
+    <%- partial('_partial/topbar') %>
+
+    <div class="app-body<%= kind === 'plain' ? ' no-sidebar' : '' %>">
+      <%- partial('_partial/sidebar') %>
+      <div class="sidebar-backdrop" data-sidebar-backdrop></div>
+      <div class="content-col">
+        <%- partial('_partial/tabbar') %>
+        <main class="content" id="main" data-tab-pane data-page-kind="<%= kind %>" data-tab-title="<%= tab_title() %>">
+          <%- body %>
+        </main>
+      </div>
+    </div>
+
+    <%- partial('_partial/footer') %>
+  </div>
+
+  <%- partial('_partial/scripts') %>
+</body>
+</html>

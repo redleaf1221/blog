@@ -1,0 +1,11 @@
+<%- partial('_partial/banner', {
+      kicker: '',
+      title: __('archive.title'),
+      desc: page.description || '',
+      count: page.posts.length,
+      countLabel: __('stats.posts'),
+      crumbs: null
+    }) %>
+
+<%- partial('_partial/timeline', { posts: page.posts }) %>
+<%- partial('_partial/pager') %>

@@ -1,0 +1,23 @@
+<% var tocHtml = toc_html(page.content || ''); %>
+<%- partial('_partial/banner', {
+      kicker: '',
+      title: page.title,
+      desc: page.description || '',
+      count: '',
+      countLabel: '',
+      crumbs: null
+    }) %>
+
+<div class="article-grid<%= tocHtml ? ' has-toc' : '' %>">
+  <div class="post-body page-body" id="post-body">
+    <%- page.content %>
+  </div>
+  <% if (tocHtml) { %>
+  <aside class="toc-rail" aria-label="<%= __('post.toc') %>">
+    <div class="toc-card">
+      <div class="toc-head"><%= __('post.toc') %></div>
+      <%- tocHtml %>
+    </div>
+  </aside>
+  <% } %>
+</div>

@@ -1,0 +1,11 @@
+<%- partial('_partial/banner', {
+      kicker: __('folder.posts'),
+      title: page.category,
+      desc: '',
+      count: page.posts.length,
+      countLabel: __('folder.count'),
+      crumbs: null
+    }) %>
+
+<%- partial('_partial/timeline', { posts: page.posts }) %>
+<%- partial('_partial/pager') %>

@@ -1,0 +1,84 @@
+<%
+  var crumbs = folder_crumbs(page);
+  var readLabel = reading_label(page);
+
+  // The excerpt is shown twice on purpose: as the gray lead here and as the
+  // card summary in the timeline, so opening a post from the sidebar does not
+  // lose it. With a `<!-- more -->` marker the excerpt is also the opening of
+  // `content`, so the body has to start after the marker instead — otherwise
+  // the same paragraph would appear twice.
+  var rawContent = String(page.content || '');
+  var leadHtml = post_lead(page);
+  var bodyHtml = rawContent;
+  if (leadHtml && rawContent.indexOf('<span id="more"></span>') !== -1) {
+    var afterMore = String(page.more || '');
+    if (afterMore.trim()) bodyHtml = afterMore;
+    else leadHtml = ''; // the post is only a marker: keep everything in the body
+  }
+
+  var tocHtml = toc_html(bodyHtml);
+  var postTags = (page.tags && page.tags.length) ? page.tags.toArray() : [];
+%>
+<article class="post">
+  <nav class="crumbs">
+    <a href="<%- url_for('/articles/') %>"><%= __('post.root_folder') %></a>
+    <% crumbs.forEach(function (c) { %>
+    <span class="crumb-sep">/</span><span class="crumb-current"><%= c.name %></span>
+    <% }); %>
+  </nav>
+
+  <header class="post-head">
+    <h1 class="post-title"><%= page.title || __('post.untitled') %></h1>
+    <div class="post-meta">
+      <span class="meta-item"><%= __('post.posted') %> <time datetime="<%= page.date.toISOString() %>"><%= date(page.date, config.date_format || 'YYYY-MM-DD') %></time></span>
+      <% if (page.updated && page.updated.valueOf() !== page.date.valueOf()) { %>
+      <span class="meta-item"><%= __('post.updated') %> <time datetime="<%= page.updated.toISOString() %>"><%= date(page.updated, config.date_format || 'YYYY-MM-DD') %></time></span>
+      <% } %>
+      <% if (readLabel) { %><span class="meta-item"><%= readLabel %></span><% } %>
+    </div>
+    <% if (postTags.length) { %>
+    <div class="post-tags">
+      <% postTags.forEach(function (tag) { %><a class="chip chip-tag" href="<%- url_for(tag.path) %>">#<%= tag.name %></a><% }); %>
+    </div>
+    <% } %>
+  </header>
+
+  <div class="article-grid<%= tocHtml ? ' has-toc' : '' %>">
+    <div class="post-main">
+      <% if (leadHtml) { %>
+      <div class="post-lead"><%- leadHtml %></div>
+      <% } %>
+      <div class="post-body" id="post-body">
+        <%- bodyHtml %>
+      </div>
+    </div>
+    <% if (tocHtml) { %>
+    <aside class="toc-rail" aria-label="<%= __('post.toc') %>">
+      <div class="toc-card">
+        <div class="toc-head"><%= __('post.toc') %></div>
+        <%- tocHtml %>
+      </div>
+    </aside>
+    <% } %>
+  </div>
+
+  <footer class="post-foot">
+    <div class="post-nav">
+      <% if (page.prev) { %>
+      <a class="post-nav-link is-prev" href="<%- url_for(page.prev.path) %>">
+        <span class="post-nav-label">← <%= __('post.prev') %></span>
+        <span class="post-nav-title"><%= page.prev.title %></span>
+      </a>
+      <% } %>
+      <% if (page.next) { %>
+      <a class="post-nav-link is-next" href="<%- url_for(page.next.path) %>">
+        <span class="post-nav-label"><%= __('post.next') %> →</span>
+        <span class="post-nav-title"><%= page.next.title %></span>
+      </a>
+      <% } %>
+    </div>
+    <% if (crumbs.length) { %>
+    <a class="back-link" href="<%- url_for('/articles/') %>">← <%= __('post.root_folder') %></a>
+    <% } %>
+  </footer>
+</article>

@@ -1,0 +1,11 @@
+<%- partial('_partial/banner', {
+      kicker: __('menu.tags'),
+      title: '#' + page.tag,
+      desc: page.description || '',
+      count: page.posts.length,
+      countLabel: __('tag.count'),
+      crumbs: null
+    }) %>
+
+<%- partial('_partial/timeline', { posts: page.posts }) %>
+<%- partial('_partial/pager') %>
