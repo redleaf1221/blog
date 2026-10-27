@@ -3,6 +3,7 @@ title: '[琵琶曲]IDAPython(9.3) vs Conda'
 tags:
   - re
 date: 2026-10-27 10:17:37
+updated: 2026-10-27 11:47:41
 excerpt: IDA Pro 9.3的IDAPython不认识conda环境,这是它的dll发生的变化.
 ---
 
@@ -239,7 +240,7 @@ addr:000000018000AEA6; 48 8D 0D 3B F7 00 00 -> E9 61 C7 00 00 90 90
 然后是cave,溜溜梅写的,我不懂汇编.
 
 ```
-addr:000000018001760C; 一堆00 -> 	48 83 EC 20 48 8B 4C 24 40 FF 15 15 0A 48 83 C4 20 48 8D 0D C2 2F E9 82 38 FF FF 
+addr:000000018001760C; 一堆00 -> 	48 83 EC 20 48 8B 4C 24 40 FF 15 15 0A 00 00 0A 48 83 C4 20 48 8D 0D C2 2F E9 82 38 FF FF 
 ```
 
 ![cave的样子](cave.png "cave的样子")
