@@ -1200,7 +1200,11 @@ body.no-tabs { --tabbar-h: 0px; }
   line-height: 1.72;
 }
 
-.post-body figure.highlight table { width: 100%; border-collapse: collapse; margin: 0; font-size: inherit; }
+/* The gutter/code table has to be pinned to the block width: with `auto` table
+   layout the table grows to the longest code line, the block clips it
+   (`overflow: hidden`) and nothing can be scrolled. With `fixed` layout the
+   <pre> keeps the cell width and scrolls on its own. */
+.post-body figure.highlight table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 0; font-size: inherit; }
 .post-body figure.highlight td { border: 0; padding: 0; vertical-align: top; }
 .post-body figure.highlight pre {
   margin: 0;
@@ -1209,11 +1213,23 @@ body.no-tabs { --tabbar-h: 0px; }
   background: transparent;
   padding: 14px 16px;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   font-size: inherit;
 }
-.post-body figure.highlight .gutter { width: 1%; user-select: none; border-right: 1px solid var(--code-line); }
+.post-body figure.highlight .gutter { width: 52px; user-select: none; border-right: 1px solid var(--code-line); }
 .post-body figure.highlight .gutter pre { padding: 14px 10px 14px 14px; text-align: right; color: var(--code-gutter); }
-.post-body pre { padding: 14px 16px; overflow-x: auto; }
+.post-body pre { padding: 14px 16px; overflow-x: auto; overscroll-behavior-x: contain; }
+
+/* a fat native scrollbar in every code block looks broken; keep it thin and
+   only visible while the block can actually scroll */
+.post-body pre { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+.post-body pre::-webkit-scrollbar { height: 8px; width: 8px; }
+.post-body pre::-webkit-scrollbar-track { background: transparent; }
+.post-body pre::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 4px;
+}
+.post-body pre::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 .highlight .comment,
 .highlight .quote,

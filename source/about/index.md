@@ -3,31 +3,24 @@ layout: page
 title: 关于
 ---
 
-## 这个站是什么
+## 何意味
 
-这里是 MathTangent 的笔记本：CTF 题解、学习记录，以及一些还没想清楚的东西。
+MathTangent,[溜溜梅](https://finance.sina.com.cn/wm/2026-06-17/doc-inicrumi4148208.shtml)使用者,脚本小子,agent小子,抽象人,!?外挂?!.
 
-站点用 [Hexo](https://hexo.io/) 生成，主题 `term` 是为这个站写的，强调两件事：
+我什么都会一点.
 
-- **文件夹**决定文章放在哪里 —— 一次比赛、一门课、一个专题，各自一个文件夹。
-- **标签**是横切维度 —— `CTF`、`Misc`、`AI` 这样的标签可以横跨所有文件夹。
+或者说[溜溜梅](https://finance.sina.com.cn/wm/2026-06-17/doc-inicrumi4148208.shtml)什么都会一点.
 
-## 怎么组织的
+## 这个站何意味
 
-```text
-source/_posts/
-├── TSCTF-J 2026/          # 一次比赛一个文件夹
-│   ├── ez_sql.md          # tags: [CTF, Web, SQL]
-│   └── ai-forensics.md    # tags: [CTF, Misc, AI]
-└── 学习笔记/
-    ├── hexo-theme.md      # tags: [Hexo, 前端]
-    └── 算法/
-        └── dsu.md         # tags: [算法]
-```
+我认为我需要建立一个blog来更高效地向网友投送我生产的sh1t.
 
-文件夹路径就是 URL 路径，所以 `/articles/TSCTF-J-2026/` 就是那个文件夹。
+所以这个站来了.
+
+本站使用[Hexo](https://hexo.io/),部署于[Github Pages](https://pages.github.com/),前端设计powered by [溜溜梅](https://finance.sina.com.cn/wm/2026-06-17/doc-inicrumi4148208.shtml)™.
 
 ## 联系
 
-- GitHub: 见右上角（在主题 `_config.yml` 里配置）
-- Email: `mathtangent@example.com`
+- GitHub: 右上角.
+- Email: `redleaf1221@outlook.com`.
+- 不要盒我.

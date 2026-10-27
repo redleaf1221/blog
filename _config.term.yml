@@ -46,7 +46,7 @@ code_speed: 300      # 代码行/分钟（0 = 代码不计入）
 code_copy: true
 
 social:
-  github: ""
+  github: "https://www.github.com/redleaf1221"
 
 footer:
   since: 2026

@@ -1,8 +1,9 @@
 ---
 title: 严肃搭建blog中
 date: 2026-10-26 17:23:16
+updated: 2026-10-27 10:03:09
 tags:
-    - 杂谈
+    - sh1t
 excerpt: 没人能getshell的网站完成了,等等,原来主页上有个shell?
 ---
 
