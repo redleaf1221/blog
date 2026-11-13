@@ -2,8 +2,12 @@
 title: TSCTF-J 2026重生之我有溜溜梅系统
 date: 2026-10-26 19:20:18
 tags: 
-    - CTF
-    - WriteUp
+    - reverse
+    - crypto
+    - misc
+    - ai
+    - pwn
+    - web
 excerpt: 我用溜溜梅肘了新生赛.
 ---
 

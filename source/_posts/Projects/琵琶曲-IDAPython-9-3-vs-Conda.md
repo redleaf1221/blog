@@ -1,7 +1,7 @@
 ---
 title: '[琵琶曲]IDAPython(9.3) vs Conda'
 tags:
-  - re
+  - reverse
 date: 2026-10-27 10:17:37
 updated: 2026-10-27 11:47:41
 excerpt: IDA Pro 9.3的IDAPython不认识conda环境,这是它的dll发生的变化.
